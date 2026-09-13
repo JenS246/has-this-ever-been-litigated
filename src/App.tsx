@@ -1,23 +1,7 @@
-'use client';
+import { type FormEvent, useRef, useState } from 'react';
+import { searchOpinions, type SearchResult } from './search';
 
-import { FormEvent, useRef, useState } from 'react';
-
-type SearchResult = {
-  term: string;
-  count: number;
-  percentile: number;
-  comparisonSize: number;
-  case: null | {
-    name: string;
-    court: string;
-    year: string;
-    citation: string;
-    summary: string;
-    url: string;
-  };
-};
-
-export default function Home() {
+export default function App() {
   const [term, setTerm] = useState('');
   const [result, setResult] = useState<SearchResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -32,10 +16,7 @@ export default function Home() {
     setError('');
 
     try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(cleanTerm)}`);
-      const data = await response.json() as SearchResult & { error?: string };
-      if (!response.ok) throw new Error(data.error || 'The court records are being difficult. Please try again.');
-      setResult(data);
+      setResult(await searchOpinions(cleanTerm));
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'The court records are being difficult. Please try again.');
     } finally {
@@ -64,13 +45,13 @@ export default function Home() {
 
   if (result) {
     const displayTerm = smartTitle(result.term);
-    const hasCase = result.count > 0 && result.case;
+    const foundCase = result.count > 0 ? result.case : null;
 
     return (
       <main className="game-shell result-shell">
         <div className="doodle courthouse result-doodle" aria-hidden="true"><i /><b /><b /><b /><b /><span /></div>
         <article className="result-stage" aria-live="polite">
-          {hasCase ? (
+          {foundCase ? (
             <>
               <p className="verdict">OH YES.</p>
               <h1 className="result-count"><strong>{result.count.toLocaleString('en-US')}</strong> opinions.</h1>
@@ -79,10 +60,10 @@ export default function Home() {
 
               <section className="case-file">
                 <p className="case-label">ONE REAL CASE</p>
-                <h2>{result.case.name}</h2>
-                <p className="case-meta">{result.case.court} <span>/</span> {result.case.year}{result.case.citation ? <><span>/</span> {result.case.citation}</> : null}</p>
-                <p className="case-summary">{result.case.summary}</p>
-                <a className="primary-link" href={result.case.url} target="_blank" rel="noreferrer">READ THE CASE</a>
+                <h2>{foundCase.name}</h2>
+                <p className="case-meta">{foundCase.court} <span>/</span> {foundCase.year}{foundCase.citation ? <><span>/</span> {foundCase.citation}</> : null}</p>
+                <p className="case-summary">{foundCase.summary}</p>
+                <a className="primary-link" href={foundCase.url} target="_blank" rel="noreferrer">READ THE CASE</a>
               </section>
             </>
           ) : (

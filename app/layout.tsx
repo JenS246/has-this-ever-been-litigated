@@ -6,7 +6,7 @@ const display = Barlow_Condensed({ variable: '--font-display', subsets: ['latin'
 const body = DM_Sans({ variable: '--font-body', subsets: ['latin'], weight: ['400', '500', '700'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.SITE_URL || 'https://has-this-ever-been-litigated.dschnei1122.chatgpt.site'),
   title: 'Has This Ever Been Litigated?',
   description: 'Type anything. Someone may have gone to court over it.',
   openGraph: {

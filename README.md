@@ -34,7 +34,8 @@ npm run lint
 
 - Opinion data: https://www.courtlistener.com/api/rest/v4/search/
 - Case pages: https://www.courtlistener.com/
-- Production site: added here after the first deployment
+- Production site: https://has-this-ever-been-litigated.dschnei1122.chatgpt.site
+- Source: https://github.com/JenS246/has-this-ever-been-litigated
 
 ## Data and privacy
 

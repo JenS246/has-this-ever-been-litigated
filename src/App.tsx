@@ -56,7 +56,7 @@ export default function App() {
               <p className="verdict">OH YES.</p>
               <h1 className="result-count"><strong>{result.count.toLocaleString('en-US')}</strong> opinions.</h1>
               <p className="result-sentence">“{displayTerm}” appears in {result.count.toLocaleString('en-US')} U.S. judicial opinions indexed by CourtListener.</p>
-              <p className="percentile">That puts it above <strong>{result.percentile}%</strong> of {result.comparisonSize} everyday and oddball comparison terms.</p>
+              <p className="percentile">That puts it above <strong>{result.percentile}%</strong> of a mix of everyday and oddball comparison terms.</p>
 
               <section className="case-file">
                 <p className="case-label">ONE REAL CASE</p>
@@ -85,6 +85,8 @@ export default function App() {
     <main className="game-shell">
       <div className="doodle courthouse" aria-hidden="true"><i /><b /><b /><b /><b /><span /></div>
       <div className="doodle gavel" aria-hidden="true"><i /><span /></div>
+      <div className="doodle scales" aria-hidden="true"><i /><span /><b /><b /></div>
+      <div className="doodle case-page" aria-hidden="true"><i /><b /><b /><b /></div>
       <section className="search-stage" aria-labelledby="game-title">
         <p className="stamp">A QUESTIONABLE USE OF PUBLIC RECORDS</p>
         <h1 id="game-title">Has This Ever<br />Been <em>Litigated?</em></h1>

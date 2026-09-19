@@ -29,6 +29,18 @@ h1 em { display: inline-block; color: var(--accent); font-style: normal; transfo
 .gavel { left: 5%; bottom: 9%; width: 180px; height: 120px; transform: rotate(-18deg); }
 .gavel i { position: absolute; left: 70px; top: 5px; width: 42px; height: 90px; border: 8px solid currentColor; border-radius: 9px; transform: rotate(-45deg); }
 .gavel span { position: absolute; left: 35px; bottom: 5px; width: 120px; border-bottom: 10px solid currentColor; border-radius: 50%; }
+.scales { top: 16%; left: 7%; width: 124px; height: 112px; transform: rotate(-6deg); }
+.scales i { position: absolute; left: 58px; top: 8px; width: 7px; height: 96px; border-radius: 5px; background: currentColor; }
+.scales span { position: absolute; left: 12px; top: 25px; width: 100px; border-top: 7px solid currentColor; transform: rotate(2deg); }
+.scales b { position: absolute; top: 30px; width: 42px; height: 42px; border: 5px solid currentColor; border-top: 0; border-radius: 0 0 50% 50%; }
+.scales b:first-of-type { left: 0; }
+.scales b:last-of-type { right: 0; }
+.case-page { right: 12%; bottom: 8%; width: 112px; height: 138px; border: 6px solid currentColor; border-radius: 8px; transform: rotate(8deg); }
+.case-page i, .case-page b { position: absolute; left: 17px; height: 5px; border-radius: 5px; background: currentColor; }
+.case-page i { top: 25px; width: 66px; }
+.case-page b:nth-of-type(1) { top: 49px; width: 74px; }
+.case-page b:nth-of-type(2) { top: 73px; width: 55px; }
+.case-page b:nth-of-type(3) { top: 97px; width: 68px; }
 .result-shell { align-items: start; overflow: auto; padding-top: clamp(38px, 7vh, 76px); padding-bottom: 54px; }
 .result-stage { width: min(820px, 100%); text-align: center; }
 .verdict { margin: 0; color: var(--accent); font-family: var(--font-display); font-size: clamp(78px, 15vw, 150px); font-weight: 900; letter-spacing: -.045em; line-height: .8; transform: rotate(-1.5deg); }
@@ -85,6 +97,8 @@ h1 em { display: inline-block; color: var(--accent); font-style: normal; transfo
   .doodle { opacity: .38; transform: scale(.7); }
   .courthouse { top: 2%; right: -50px; }
   .gavel { left: -48px; bottom: 3%; }
+  .scales { top: 17%; left: -39px; }
+  .case-page { right: -35px; bottom: 15%; }
   .result-shell { padding: 28px 16px 44px; }
   .case-file { padding: 26px 22px; box-shadow: 5px 5px 0 var(--ink); }
   .case-file h2 { max-width: 84%; }

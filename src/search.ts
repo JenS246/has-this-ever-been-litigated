@@ -1,5 +1,5 @@
 const COMPARISON_COUNTS = [218, 1684, 2649, 3497, 4181, 9098, 22542, 31757, 32954, 42689, 60749];
-const SEARCH_URL = 'https://www.courtlistener.com/api/rest/v4/search/';
+const SEARCH_URL = import.meta.env.VITE_API_URL || 'https://litigated.150-136-117-187.sslip.io/api/search';
 
 export type SearchResult = {
   term: string;
@@ -28,9 +28,7 @@ export async function searchOpinions(input: string): Promise<SearchResult> {
   if (/[\u0000-\u001f\u007f]/.test(term)) throw new Error('That search contains unsupported characters.');
 
   const url = new URL(SEARCH_URL);
-  url.searchParams.set('type', 'o');
-  url.searchParams.set('highlight', 'on');
-  url.searchParams.set('q', `"${term.replace(/[\\"]/g, '\\$&')}"`);
+  url.searchParams.set('q', term);
 
   let response: Response;
   try {

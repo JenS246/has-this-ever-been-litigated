@@ -1,0 +1,10 @@
+[
+  {
+    "name": "has-this-ever-been-litigated-api",
+    "project": "/config/projects/has-this-ever-been-litigated",
+    "port": 8793,
+    "command": "node --env-file=.env backend/server.mjs",
+    "cwd": "/config/projects/has-this-ever-been-litigated",
+    "public_url": "https://litigated.150-136-117-187.sslip.io"
+  }
+]

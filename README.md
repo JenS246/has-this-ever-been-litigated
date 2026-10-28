@@ -4,8 +4,8 @@ A tiny, replayable web game: enter any word or short phrase, see how often it ap
 
 ## How it works
 
-- The static React app makes an exact-phrase browser request to CourtListener's public Legal Search API with `type=o`.
-- CourtListener permits cross-origin requests from the GitHub Pages origin, so this project needs no backend, proxy, database, account, or API key.
+- The static React app sends exact-phrase searches to a small Node.js proxy at `https://litigated.150-136-117-187.sslip.io`.
+- The proxy authenticates to CourtListener's Legal Search API with `type=o`; the CourtListener token remains server-side.
 - Opinion counts, case names, courts, dates, citations, links, and matching text all come from the live API. The app does not invent fallback cases or numbers.
 - The playful percentile compares the live result count with a fixed basket of 11 real CourtListener searches collected on September 13, 2026.
 - Empty, loading, upstream-error, and successful-result states are handled in the same loop.
@@ -20,6 +20,8 @@ Requires Node.js 22.13 or newer.
 npm install
 npm run dev
 ```
+
+To run the API, copy `.env.example` to `.env`, set a CourtListener API token, and run `npm run start:api`.
 
 Open the local URL printed by Vite.
 
@@ -36,10 +38,20 @@ The production bundle is written to `dist/`.
 
 - Game: https://jens246.github.io/has-this-ever-been-litigated/
 - Source: https://github.com/JenS246/has-this-ever-been-litigated
+- API: https://litigated.150-136-117-187.sslip.io/api/health
 - Opinion data: https://www.courtlistener.com/api/rest/v4/search/
 
 Pushes to `main` trigger `.github/workflows/pages.yml`, which builds the app and publishes `dist/` to GitHub Pages. Vite's base path is set to `/has-this-ever-been-litigated/` so static assets resolve correctly.
 
 ## Data and privacy
 
-Searches go directly from the visitor's browser to CourtListener. This project stores no searches or personal data.
+Searches pass through the project's stateless proxy and are not stored. The CourtListener credential is loaded from the ignored `.env` file and is never committed.
+
+## Backend operations
+
+- PM2 service: `has-this-ever-been-litigated-api`
+- Local bind: `0.0.0.0:8793`
+- Public URL: `https://litigated.150-136-117-187.sslip.io`
+- Data: none; the proxy is stateless
+- Backup/restore: clone the GitHub repository, restore the untracked `.env` from a secret backup, install dependencies, and start the PM2 command documented in `ops/backend-services.json`
+- Caddy route: `ops/Caddyfile.host`

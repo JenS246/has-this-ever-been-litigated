@@ -1,0 +1,4 @@
+litigated.150-136-117-187.sslip.io {
+  encode zstd gzip
+  reverse_proxy webtop:8793
+}

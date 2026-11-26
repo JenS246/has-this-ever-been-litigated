@@ -1,0 +1,9 @@
+{
+  "title": "Has This Ever Been Litigated?",
+  "description": "Type any word and see how often it shows up in real court opinions.",
+  "section": "legal-practice",
+  "tags": ["courts", "word game", "search"],
+  "build": "VITE_API_URL=https://jens.games/has-this-ever-been-litigated/api/search npx vite build --outDir .jens-build --emptyOutDir",
+  "public": ".jens-build",
+  "legacyBackend": "has-this-ever-been-litigated-api (port 8793, also on litigated.150-136-117-187.sslip.io); routed at /has-this-ever-been-litigated/api. Not managed by jens publish yet."
+}
